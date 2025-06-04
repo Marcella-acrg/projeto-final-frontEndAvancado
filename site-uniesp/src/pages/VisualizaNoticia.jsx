@@ -2,15 +2,15 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Container, Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
+import api from '../api';
 
 const VisualizaNoticia = () => {
 
     const { id } = useParams()
     const [noticia, setNoticia] = useState({})
-    const urlBase = "http://localhost:3000"
-
+    
     useEffect(() => {
-        axios.get(`${urlBase}/noticias/${id}`)
+        api.get(`/noticias/${id}`)
         .then(response => setNoticia(response.data))
         .catch(error => console.error("Erro ao obter a noticia: ", error))
     }, [id])

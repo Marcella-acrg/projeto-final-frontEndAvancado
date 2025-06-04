@@ -2,18 +2,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import api from '../api';
 
 const Noticias = () => {
   const [noticias, setNoticias] = useState([]);
-  const urlBase = "http://localhost:3000";
 
   useEffect(() => {
-    axios
-      .get(`${urlBase}/noticias`)
+    api
+      .get(`/noticias`)
       .then((response) => setNoticias(response.data))
-      .catch((error) =>
-        console.error("Erro ao carregar a lista de notícias: ", error)
-      );
+      .catch((error) => console.error("Erro ao carregar a lista de notícias: ", error));
   }, []);
 
   return (
